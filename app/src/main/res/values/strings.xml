@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">PSP</string>
+
+    <!--    Main Activity   -->
+    <string name="main_activity_title">PROYECTOS</string>
+    <string name="item_title_project_name">Project Name</string>
+    <string name="input_name_project">Ingrese el nombre del proyecto</string>
+
+    <!--    Functions   -->
+    <string name="functions_title">FUNCIONES</string>
+    <string name="functions_btn_timeLog">Time Log</string>
+    <string name="functions_btn_defectLog">Defect Log</string>
+    <string name="functions_btn_project_plan_summary">Project plan summary</string>
+
+    <!--    Time Log    -->
+    <string name="time_log_phase">Phase:</string>
+    <string name="time_log_start">Start:</string>
+    <string name="time_log_btn_start">Start </string>
+    <string name="time_log_interruption">Interruption:</string>
+    <string name="time_log_stop">Stop:</string>
+    <string name="time_log_btn_stop">Stop</string>
+    <string name="time_log_delta">Delta:</string>
+    <string name="time_log_comments">Comments:</string>
+
+    <!--    Defect Log  -->
+    <string name="defect_log_date">Date:</string>
+    <string name="defect_log_start">Iniciar</string>
+    <string name="defect_log_type">Type:</string>
+    <string name="defect_log_phase_injected">Phase Injected:</string>
+    <string name="defect_log_phase_removed">Phase Removed:</string>
+    <string name="defect_log_fix_time">Fix Time:</string>
+    <string name="defect_log_defect_description">Defect Description:</string>
+
+    <!--    General-->
+    <string-array name="phases">
+        <item>PLAN</item>
+        <item>DDL</item>
+        <item>CODE</item>
+        <item>COMPILE</item>
+        <item>UT</item>
+        <item>PM</item>
+    </string-array>
+
+    <string name="date_and_time">22/11/2019 – 9:23 PM</string>
+    <string name="txt_btn_register">Registrar</string>
+
+
+</resources>
