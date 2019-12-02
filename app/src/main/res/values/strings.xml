@@ -43,6 +43,7 @@
 
     <string name="date_and_time">22/11/2019 – 9:23 PM</string>
     <string name="txt_btn_register">Registrar</string>
+    <string name="item_title_project_id">Project Id</string>
 
 
 </resources>
