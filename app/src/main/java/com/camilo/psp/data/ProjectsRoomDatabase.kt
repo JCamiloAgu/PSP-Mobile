@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import com.camilo.psp.data.dao.ProjectDao
 import com.camilo.psp.data.entity.ProjectEntity
 
-
 @Database(entities = [ProjectEntity::class], version = 1)
 abstract class ProjectsRoomDatabase : RoomDatabase(){
 

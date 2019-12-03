@@ -1,6 +1,5 @@
 package com.camilo.psp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             val newProjectDialog = NewProjectDialogFragment()
             newProjectDialog.show(supportFragmentManager, "newProjectDialog")
         }
-
     }
 
     private fun setUpAdapter() {
@@ -44,4 +42,5 @@ class MainActivity : AppCompatActivity() {
         rcView.adapter = adapter
         rcView.layoutManager = LinearLayoutManager(this)
     }
+
 }

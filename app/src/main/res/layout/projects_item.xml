@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cardViewProject"
+=======
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardViewProject"
+    android:clickable="true"
+    android:focusable="true"
+>>>>>>> ed78a74b3a091ba3a96425dbce3f499e1b8c1fbf
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
@@ -23,6 +31,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:text="@string/item_title_project_id"
+<<<<<<< HEAD
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <View
@@ -32,5 +41,8 @@
         android:layout_gravity="bottom"
         android:layout_marginTop="30dp"
         android:background="?android:attr/listDivider" />
+=======
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+>>>>>>> ed78a74b3a091ba3a96425dbce3f499e1b8c1fbf
 
 </androidx.cardview.widget.CardView>

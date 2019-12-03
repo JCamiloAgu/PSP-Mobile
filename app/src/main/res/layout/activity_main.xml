@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> ed78a74b3a091ba3a96425dbce3f499e1b8c1fbf
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+<<<<<<< HEAD
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,6 +30,15 @@
             android:scrollbars="vertical"
             tools:listitem="@layout/projects_item" />
     </LinearLayout>
+=======
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainActivityRcView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/projects_item"
+        />
+>>>>>>> ed78a74b3a091ba3a96425dbce3f499e1b8c1fbf
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
