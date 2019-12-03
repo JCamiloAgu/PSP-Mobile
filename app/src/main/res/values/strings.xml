@@ -44,6 +44,11 @@
     <string name="date_and_time">22/11/2019 – 9:23 PM</string>
     <string name="txt_btn_register">Registrar</string>
     <string name="item_title_project_id">Project Id</string>
+    <string name="new_project_dialog_title">Crear nuevo proyecto</string>
+    <string name="new_project_dialog_message">Ingrese los datos para el nuevo proyecto</string>
+    <string name="new_project_dialog_positive_btn">Agregar</string>
+    <string name="new_project_dialog_negative_btn">Cancelar</string>
+    <string name="new_project_dialog_positive_btn_error">El nombre del proyecto no puede estar vacío.</string>
 
 
 </resources>

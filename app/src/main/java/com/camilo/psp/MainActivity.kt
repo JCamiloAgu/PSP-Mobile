@@ -4,11 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.camilo.psp.adapters.ProjectsListAdapter
-import com.camilo.psp.data.entity.ProjectEntity
+import com.camilo.psp.dialogs.NewProjectDialogFragment
 import com.camilo.psp.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainActivityViewModel = ViewModelProviders.of(this)[MainActivityViewModel::class.java]
-        mainActivityViewModel.allProjects.observe(this, Observer { words ->
-            words.let { adapter.setProjects(it) }
+        mainActivityViewModel.allProjects.observe(this, Observer { project ->
+            project.let { adapter.setProjects(it) }
         })
 
         setUpEvents()
@@ -33,10 +32,10 @@ class MainActivity : AppCompatActivity() {
     private fun setUpEvents()
     {
         fab.setOnClickListener {
-            //val intent = Intent(this, FunctionsActivity::class.java)
-            val project1 = ProjectEntity(0, "Tercero")
-            mainActivityViewModel.insert(project1)
+            val newProjectDialog = NewProjectDialogFragment()
+            newProjectDialog.show(supportFragmentManager, "newProjectDialog")
         }
+
     }
 
     private fun setUpAdapter() {

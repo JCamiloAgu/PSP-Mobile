@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
 
-//    private val projectsDao = ProjectsRoomDatabase.getDatabase(application, viewModelScope).projectDao()
     private val projectsDao = ProjectsRoomDatabase.getDatabase(application).projectDao()
     private val repository: ProjectRepository = ProjectRepository(projectsDao)
     val allProjects: LiveData<List<ProjectEntity>> = repository.allProjects

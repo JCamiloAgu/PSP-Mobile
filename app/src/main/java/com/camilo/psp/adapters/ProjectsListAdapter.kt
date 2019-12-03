@@ -1,12 +1,14 @@
 package com.camilo.psp.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.camilo.psp.FunctionsActivity
 import com.camilo.psp.R
 import com.camilo.psp.data.entity.ProjectEntity
 import kotlinx.android.synthetic.main.projects_item.view.*
@@ -44,7 +46,9 @@ class ProjectsListAdapter (private val context: Context) : RecyclerView.Adapter<
 
         init {
             cardView.setOnClickListener{
-                Toast.makeText(context, "Touch en proyecto", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, FunctionsActivity::class.java)
+                intent.putExtra("ProjectName", txtName.text)
+                startActivity(context, intent, null)
             }
         }
     }
