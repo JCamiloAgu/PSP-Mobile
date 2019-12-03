@@ -31,7 +31,7 @@
     <string name="defect_log_fix_time">Fix Time:</string>
     <string name="defect_log_defect_description">Defect Description:</string>
 
-    <!--    General-->
+    <!--    Spinner Phase   -->
     <string-array name="phases">
         <item>PLAN</item>
         <item>DDL</item>
@@ -41,6 +41,22 @@
         <item>PM</item>
     </string-array>
 
+    <!--    Spinner Type   -->
+    <string-array name="type">
+        <item>Documentation</item>
+        <item>Syntax</item>
+        <item>Build</item>
+        <item>Package</item>
+        <item>Assignment</item>
+        <item>Interface</item>
+        <item>Checking</item>
+        <item>Data</item>
+        <item>Function</item>
+        <item>System</item>
+        <item>Environment</item>
+    </string-array>
+
+    <!--    General-->
     <string name="date_and_time">22/11/2019 – 9:23 PM</string>
     <string name="txt_btn_register">Registrar</string>
     <string name="item_title_project_id">Project Id</string>

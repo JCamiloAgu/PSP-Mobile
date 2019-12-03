@@ -27,9 +27,9 @@
         android:layout_marginStart="8dp"
         android:text="@string/defect_log_phase_removed"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner3"
+        app:layout_constraintBottom_toBottomOf="@+id/phase_removed_spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner3" />
+        app:layout_constraintTop_toTopOf="@+id/phase_removed_spinner" />
 
     <TextView
         android:id="@+id/textView7"
@@ -73,10 +73,10 @@
         android:text="@string/defect_log_type"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner" />
+        app:layout_constraintTop_toTopOf="@+id/type_spinner" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/type_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -91,27 +91,27 @@
         android:layout_marginStart="8dp"
         android:text="@string/defect_log_phase_injected"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/spinner2"
+        app:layout_constraintBottom_toBottomOf="@+id/phase_injected_spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/spinner2" />
+        app:layout_constraintTop_toTopOf="@+id/phase_injected_spinner" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/phase_injected_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/type_spinner" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/phase_removed_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/phase_injected_spinner" />
 
     <TextView
         android:id="@+id/textView11"
@@ -133,7 +133,7 @@
         android:text="@string/date_and_time"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+        app:layout_constraintTop_toBottomOf="@+id/phase_removed_spinner" />
 
     <ImageButton
         android:id="@+id/imageButton"

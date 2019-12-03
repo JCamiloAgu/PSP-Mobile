@@ -2,8 +2,7 @@ package com.camilo.psp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Spinner
+import com.camilo.psp.common.setUpSpinner
 import kotlinx.android.synthetic.main.activity_time_log.*
 
 class TimeLogActivity : AppCompatActivity() {
@@ -12,15 +11,8 @@ class TimeLogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_time_log)
 
-        val spinner: Spinner = time_log_spinner
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.phases,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
-        }
+        setUpSpinner(this, time_log_spinner, R.array.phases)
 
     }
+
 }
