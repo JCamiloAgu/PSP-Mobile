@@ -19,4 +19,5 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         repository.insertProject(projectEntity)
     }
 
+
 }

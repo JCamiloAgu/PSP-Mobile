@@ -1,7 +1,9 @@
 package com.camilo.psp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +11,7 @@ import com.camilo.psp.adapters.ProjectsListAdapter
 import com.camilo.psp.dialogs.NewProjectDialogFragment
 import com.camilo.psp.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,5 +45,8 @@ class MainActivity : AppCompatActivity() {
         rcView.adapter = adapter
         rcView.layoutManager = LinearLayoutManager(this)
     }
+
+
+
 
 }
