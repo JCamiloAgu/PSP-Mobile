@@ -15,9 +15,11 @@ class FunctionsActivity : AppCompatActivity() {
         val btnDefectLog = btn_defect_log
 
         textViewTitle.text = intent.extras?.get("ProjectName").toString()
+        val projectId = intent.extras?.get("ProjectId").toString()
 
         btnTimeLog.setOnClickListener {
             val intent = Intent(this, TimeLogActivity::class.java)
+            intent.putExtra("ProjectId", projectId)
             startActivity(intent)
         }
 

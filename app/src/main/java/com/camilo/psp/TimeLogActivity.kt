@@ -3,6 +3,7 @@ package com.camilo.psp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -23,32 +24,13 @@ class TimeLogActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewmodel = timeLogActivityViewModel
 
+//         val porjectId = intent.extras!!.get("ProjectId").toString().toInt()
+//        timeLogActivityViewModel.projectId = porjectId
+
         setUpSpinner(this, time_log_spinner, R.array.phases)
 
-//        timeLogActivityViewModel = ViewModelProviders.of(this)[TimeLogViewModel::class.java]
-
-//        setUpEvents()
-//
-//        setUpObservers()
     }
 
-//    private fun setUpEvents() {
-//        btn_start.setOnClickListener {
-//            timeLogActivityViewModel.setActualTime(timeLogActivityViewModel.timeStart)
-//            it.isEnabled = false
-//            btn_stop.isEnabled = true
-//        }
-//
-//        btn_stop.setOnClickListener {
-//            timeLogActivityViewModel.setActualTime(timeLogActivityViewModel.timeStop)
-//            it.isEnabled = false
-//        }
-//
-//    }
-//
-//    private fun setUpObservers() {
-//        timeLogActivityViewModel.timeStart.observe(this, Observer { txt_start.text = it })
-//        timeLogActivityViewModel.timeStop.observe(this, Observer { txt_stop.text = it })
-//    }
+
 
 }

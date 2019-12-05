@@ -48,6 +48,7 @@ class ProjectsListAdapter (private val context: Context) : RecyclerView.Adapter<
             cardView.setOnClickListener{
                 val intent = Intent(context, FunctionsActivity::class.java)
                 intent.putExtra("ProjectName", txtName.text)
+                intent.putExtra("ProjectId", txtId.text)
                 startActivity(context, intent, null)
             }
         }

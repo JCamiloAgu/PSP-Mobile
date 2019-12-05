@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.camilo.psp.data.dao.ProjectDao
+import com.camilo.psp.data.dao.TimeLogDao
 import com.camilo.psp.data.entity.ProjectEntity
 import com.camilo.psp.data.entity.TimeLogEntity
 
@@ -12,6 +13,7 @@ import com.camilo.psp.data.entity.TimeLogEntity
 abstract class ProjectsRoomDatabase : RoomDatabase(){
 
     abstract fun projectDao(): ProjectDao
+    abstract fun timeLogDao(): TimeLogDao
 
     companion object
     {
