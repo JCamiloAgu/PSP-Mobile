@@ -32,7 +32,6 @@ class TimeLogViewModel : ViewModel() {
             val simpleDateFormat = SimpleDateFormat(pattern)
             val final = simpleDateFormat.format(Date())
             final.let { toAffect.value = final }
-
         }
     }
 
