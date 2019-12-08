@@ -2,6 +2,7 @@ package com.camilo.psp.viewmodels
 
 import android.app.Application
 import android.os.Build
+import android.util.Log
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.*
@@ -17,30 +18,40 @@ import java.util.*
 
 class TimeLogViewModel(application: Application) : AndroidViewModel(application) {
 
-    // Repositorio
-    private val timeLogRepository: TimeLogRepository
-    var timeLogInfo: MutableLiveData<TimeLogEntity?>? = null
 
-    init {
-        val timeLogDao = ProjectsRoomDatabase.getDatabase(application).timeLogDao()
-        timeLogRepository = TimeLogRepository(timeLogDao)
-    }
+
+    val timeLogDao = ProjectsRoomDatabase.getDatabase(application).timeLogDao()
+    // Repositorio
+    private val timeLogRepository: TimeLogRepository = TimeLogRepository(timeLogDao)
+
+    var projectId = 1
+    var phase = "PLAN"
+
+    val timeLogInfo: LiveData<List<TimeLogEntity?>> = timeLogRepository.getInfo(projectId, phase)
 
     //En estos campos se almacena la fecha en String para mostrarle al usuario
     val timeStartText: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val timeStopText: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     //En estos campos se almacena la fecha en Date o DateTime para hacer el cálculo del deltaTime
-    lateinit var timeStartDate: Any
-    lateinit var timeStopDate: Any
+    private lateinit var timeStartDate: Any
+    private lateinit var timeStopDate: Any
 
     val deltaTime: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     // Estas variables establecen la visibilidad de los botones de Start y de Stop
     var isEnabledBtnStart: MutableLiveData<Boolean> = MutableLiveData(true)
     var isEnabledBtnStop: MutableLiveData<Boolean> = MutableLiveData(false)
+    var isEnabledBtnReg: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    var projectId = -1
+    fun buttonsJ(){
+        if (timeLogInfo.value != null)
+            allButtonsDisabled()
+        else
+            buttonsNormality()
+    }
+
+
 
     private fun setActualTime(toAffect: MutableLiveData<String>)
     {
@@ -88,7 +99,7 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun btnsClick(toAffect: MutableLiveData<String>) {
+    fun btnHidden(toAffect: MutableLiveData<String>) {
         if (toAffect == timeStartText) {
             setActualTime(toAffect)
             isEnabledBtnStart.value = false
@@ -98,11 +109,32 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
         else {
             setActualTime(toAffect)
             isEnabledBtnStop.value = false
+            isEnabledBtnReg.value = true
             setDeltaTime(timeStartDate, timeStopDate)
         }
+    }
 
 
+    fun insertTimeLog(timeLogEntity: TimeLogEntity) = viewModelScope.launch {
+        timeLogRepository.insertTimeLog(timeLogEntity)
+    }
 
+//    fun getTimeLogInfoo(projectId: Int, phase: String) {
+//        timeLogInfo = timeLogRepository.getInfo(projectId, phase)
+//        var l = timeLogInfo.value.toString()
+//        Log.d("Prueba77", l)
+//    }
+
+    private fun allButtonsDisabled(){
+        isEnabledBtnStart.value = false
+        isEnabledBtnStop.value = false
+        isEnabledBtnReg.value = false
+    }
+
+    private fun buttonsNormality() {
+        isEnabledBtnStart.value = true
+        isEnabledBtnStop.value = false
+        isEnabledBtnReg.value = false
     }
 
 }
