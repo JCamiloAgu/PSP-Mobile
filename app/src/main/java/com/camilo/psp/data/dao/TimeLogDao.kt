@@ -11,8 +11,8 @@ import com.camilo.psp.data.entity.TimeLogEntity
 @Dao
 interface TimeLogDao {
 
-    @Query("SELECT * FROM timeLogs WHERE projectId = :projectId AND phase = :phase")
-    fun getTimeLog(projectId: Int, phase: String): LiveData<List<TimeLogEntity?>>
+    @Query("SELECT * FROM timeLogs WHERE projectId = :projectId")
+    fun getTimeLog(projectId: Int): LiveData<List<TimeLogEntity?>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertTimeLog(timeLogEntity: TimeLogEntity)

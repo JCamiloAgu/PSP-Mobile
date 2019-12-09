@@ -9,7 +9,7 @@ import com.camilo.psp.data.entity.TimeLogEntity
 class TimeLogRepository(private val timeLogDao: TimeLogDao)
 {
 
-    fun getInfo(projectId: Int, phase: String): LiveData<List<TimeLogEntity?>> = timeLogDao.getTimeLog(projectId, phase)
+    fun getInfo(projectId: Int): LiveData<List<TimeLogEntity?>> = timeLogDao.getTimeLog(projectId)
 
     suspend fun insertTimeLog (timeLogEntity: TimeLogEntity){
         timeLogDao.insertTimeLog(timeLogEntity)
