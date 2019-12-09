@@ -44,7 +44,7 @@ class TimeLogActivity : AppCompatActivity() {
         })
 
         binding.btnReg.setOnClickListener {
-//            if (isAllInputsCorrect()) {
+            if (isAllInputsCorrect()) {
                 val phase = binding.timeLogSpinner.selectedItem.toString()
                 val start = timeLogActivityViewModel.txtStart.value!!
                 val interruption = binding.txtInterruption.text.toString().toInt()
@@ -52,11 +52,13 @@ class TimeLogActivity : AppCompatActivity() {
                 val delta = timeLogActivityViewModel.txtDelta.value!!
                 val comments = binding.txtComments.text.toString()
 
-                val timeLogEntity =
-                    TimeLogEntity(0, phase, start, interruption, stop, delta, comments, projectId)
+                val timeLogEntity = TimeLogEntity(0, phase, start, interruption, stop, delta, comments, projectId)
 
                 timeLogActivityViewModel.insertTimeLog(timeLogEntity)
-//            }
+                timeLogActivityViewModel.setInputsEnabled(true)
+                timeLogActivityViewModel.setDeltaTime(timeLogActivityViewModel.timeStartDate, timeLogActivityViewModel.timeStopDate, interruption)
+
+            }
         }
 
         binding.timeLogSpinner.onItemSelectedListener = object : OnItemSelectedListener {
@@ -76,6 +78,7 @@ class TimeLogActivity : AppCompatActivity() {
         
     }
 
+    // TODO = Debo investigar como hacer que cuando todos los campos estén correctos el btnReg se active.
     private fun isAllInputsCorrect(): Boolean
     {
         if(binding.txtInterruption.text.isNullOrBlank()) {

@@ -12,10 +12,12 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+// TODO = Creo que debo cambiar la mayoria de elementos de LiveData
+
 class TimeLogViewModel(application: Application) : AndroidViewModel(application) {
 
     // Repositorio
-    val timeLogDao = ProjectsRoomDatabase.getDatabase(application).timeLogDao()
+    private val timeLogDao = ProjectsRoomDatabase.getDatabase(application).timeLogDao()
     private val timeLogRepository: TimeLogRepository = TimeLogRepository(timeLogDao)
 
     var projectId: Int = 1
@@ -23,8 +25,8 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
 
 
     //En estos campos se almacena la fecha en Date o DateTime para hacer el cálculo del deltaTime
-    private lateinit var timeStartDate: Any
-    private lateinit var timeStopDate: Any
+    lateinit var timeStartDate: Any
+    lateinit var timeStopDate: Any
 
     // Estas variables establecen la visibilidad de los botones de Start y de Stop
     val isEnabledBtnStart: MutableLiveData<Boolean> = MutableLiveData(true)
@@ -66,19 +68,18 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    private fun setDeltaTime(timeStart: Any, timeStop: Any)
+    fun setDeltaTime(timeStart: Any, timeStop: Any, interruption: Int)
     {
         if (!isEnabledBtnStart.value!! && !isEnabledBtnStop.value!!) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 timeStart as LocalDateTime
                 timeStop as LocalDateTime
-                txtDelta.value = (timeStop.minute - timeStart.minute).toString()
+                txtDelta.value = ((timeStop.minute - timeStart.minute) - interruption).toString()
             } else {
                 timeStart as Date
                 timeStop as Date
 
-                //Mejorar
-                val timeDiff: Long = timeStop.time - timeStart.time
+                val timeDiff: Long = (timeStart.time - timeStop.time) - interruption
 
                 val segMilli: Long = 1000
                 val minutesMilli = segMilli * 60
@@ -87,7 +88,7 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
             }
         }
     }
-    private fun setInputsEnabled(isAllDisable: Boolean)
+    fun setInputsEnabled(isAllDisable: Boolean)
     {
         if(isAllDisable) {
             isEnabledBtnStart.value = false
@@ -119,7 +120,6 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
             setActualTime(toAffect)
             isEnabledBtnStop.value = false
             isEnabledBtnReg.value = true
-            setDeltaTime(timeStartDate, timeStopDate)
         }
     }
 
