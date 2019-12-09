@@ -38,8 +38,13 @@ class TimeLogActivity : AppCompatActivity() {
 
     private fun setUpListeners()
     {
+
+        timeLogActivityViewModel.timeLogInfo.observe(this, Observer {
+            Log.d("ESTE", it?.toString() ?: "NADDA")
+        })
+
         binding.btnReg.setOnClickListener {
-            if (isAllInputsCorrect()) {
+//            if (isAllInputsCorrect()) {
                 val phase = binding.timeLogSpinner.selectedItem.toString()
                 val start = timeLogActivityViewModel.txtStart.value!!
                 val interruption = binding.txtInterruption.text.toString().toInt()
@@ -51,7 +56,7 @@ class TimeLogActivity : AppCompatActivity() {
                     TimeLogEntity(0, phase, start, interruption, stop, delta, comments, projectId)
 
                 timeLogActivityViewModel.insertTimeLog(timeLogEntity)
-            }
+//            }
         }
 
         binding.timeLogSpinner.onItemSelectedListener = object : OnItemSelectedListener {
