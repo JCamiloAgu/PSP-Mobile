@@ -45,9 +45,12 @@ class TimeLogActivity : AppCompatActivity() {
 
         binding.btnReg.setOnClickListener {
             if (isAllInputsCorrect()) {
+                val interruption = binding.txtInterruption.text.toString().toInt()
+
+                timeLogActivityViewModel.setDeltaTime(timeLogActivityViewModel.timeStartDate, timeLogActivityViewModel.timeStopDate, interruption)
+
                 val phase = binding.timeLogSpinner.selectedItem.toString()
                 val start = timeLogActivityViewModel.txtStart.value!!
-                val interruption = binding.txtInterruption.text.toString().toInt()
                 val stop = timeLogActivityViewModel.txtStop.value!!
                 val delta = timeLogActivityViewModel.txtDelta.value!!
                 val comments = binding.txtComments.text.toString()
@@ -56,7 +59,6 @@ class TimeLogActivity : AppCompatActivity() {
 
                 timeLogActivityViewModel.insertTimeLog(timeLogEntity)
                 timeLogActivityViewModel.setInputsEnabled(true)
-                timeLogActivityViewModel.setDeltaTime(timeLogActivityViewModel.timeStartDate, timeLogActivityViewModel.timeStopDate, interruption)
 
             }
         }

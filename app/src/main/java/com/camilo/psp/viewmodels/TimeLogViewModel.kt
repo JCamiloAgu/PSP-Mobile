@@ -104,7 +104,6 @@ class TimeLogViewModel(application: Application) : AndroidViewModel(application)
             isEnabledBtnReg.value = false
 
             isEnabledEditText.value = true
-
         }
     }
 
