@@ -11,8 +11,9 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     //TODO = Instanciar el repositorio
 
 
-    private var isRunning: Boolean = false
+    var isRunning: Boolean = false
     private var pauseoffset: Long = 0
+    var base: Long = SystemClock.elapsedRealtime()
 
 
     val txtDate: MutableLiveData<String> = MutableLiveData()
@@ -28,6 +29,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
         if (!isRunning)
         {
             chronometer.base = SystemClock.elapsedRealtime() - pauseoffset
+            base = chronometer.base
             chronometer.start()
             isRunning = true
         }
@@ -38,7 +40,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
         if (isRunning)
         {
             chronometer.stop()
-            pauseoffset = SystemClock.elapsedRealtime() - chronometer.base
+            pauseoffset = SystemClock.elapsedRealtime() - base
             isRunning = false
         }
     }
@@ -47,6 +49,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     {
         chronometer.stop()
         chronometer.base = SystemClock.elapsedRealtime()
+        base = chronometer.base
         pauseoffset = 0
         isRunning = false
 
