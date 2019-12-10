@@ -3,6 +3,7 @@ package com.camilo.psp
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Chronometer
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -28,14 +29,14 @@ class DefectLogActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         chronometer = binding.myChronometer
-
-
         chronometer.base = defectLogViewModel.base
 
         if (defectLogViewModel.isRunning) {
             defectLogViewModel.isRunning = false
             defectLogViewModel.startChronometer(chronometer)
         }
+        else
+            chronometer.text = defectLogViewModel.chronometerText
 
         setUpSpinners()
         setUpEvents()
@@ -57,6 +58,8 @@ class DefectLogActivity : AppCompatActivity() {
         }
 
         chronometer.setOnChronometerTickListener {
+            Log.d("CHRONOMETER", it.text.toString())
+            defectLogViewModel.chronometerText = it.text
             if (it.text[3].toString().toInt() == 5 && it.text[4].toString().toInt() == 9)
                 binding.circle.progress = 0
             else

@@ -14,6 +14,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     var isRunning: Boolean = false
     private var pauseoffset: Long = 0
     var base: Long = SystemClock.elapsedRealtime()
+    var chronometerText: CharSequence = "00:00"
 
 
     val txtDate: MutableLiveData<String> = MutableLiveData()
