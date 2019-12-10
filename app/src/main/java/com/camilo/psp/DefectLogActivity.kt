@@ -6,81 +6,57 @@ import android.os.SystemClock
 import android.util.Log
 import android.widget.Chronometer
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.camilo.psp.common.setUpSpinner
+import com.camilo.psp.databinding.ActivityDefectLogBinding
+import com.camilo.psp.viewmodels.DefectLogViewModel
 import kotlinx.android.synthetic.main.activity_defect_log.*
 
 class DefectLogActivity : AppCompatActivity() {
 
     private lateinit var chronometer: Chronometer
-    private var isRunning: Boolean = false
-    private var pauseoffset: Long = 0
+
+    private lateinit var binding: ActivityDefectLogBinding
+    private val defectLogViewModel: DefectLogViewModel by lazy { ViewModelProviders.of(this)[DefectLogViewModel::class.java] }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_defect_log)
 
-        chronometer = myChronometer
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_defect_log)
+        binding.viewmodel =  defectLogViewModel
+        binding.lifecycleOwner = this
 
-        setUpSpinner(this, type_spinner, R.array.type)
-        setUpSpinner(this, phase_injected_spinner, R.array.phases)
-        setUpSpinner(this, phase_removed_spinner, R.array.phases)
-
-        setUpEvents()
-
+        chronometer = binding.myChronometer
         chronometer.base = SystemClock.elapsedRealtime()
 
-        chronometer.setOnChronometerTickListener {
-            Log.d("Chronometer", it.text.toString())
-            if((SystemClock.elapsedRealtime() - chronometer.base) >= 600000)
-            {
-                it.base = SystemClock.elapsedRealtime()
-                Toast.makeText(this, "Bing", Toast.LENGTH_SHORT).show()
+        setUpSpinners()
+        setUpEvents()
 
-            }
-        }
 
     }
 
-    private fun setUpEvents() {
+    private fun setUpEvents()
+    {
         imageButtonStart.setOnClickListener{
-            startChronometer()
+            defectLogViewModel.startChronometer(chronometer)
         }
 
         imageButtonReset.setOnClickListener {
-            resetChronometer()
+            defectLogViewModel.resetChronometer(chronometer)
         }
 
         imageButtonStop.setOnClickListener {
-            pauseChronometer()
+            defectLogViewModel.pauseChronometer(chronometer)
         }
     }
 
-    private fun startChronometer()
+    private fun setUpSpinners()
     {
-        if (!isRunning)
-        {
-            chronometer.base = SystemClock.elapsedRealtime() - pauseoffset
-            chronometer.start()
-            isRunning = true
-        }
+        setUpSpinner(this, type_spinner, R.array.type)
+        setUpSpinner(this, phase_injected_spinner, R.array.phases)
+        setUpSpinner(this, phase_removed_spinner, R.array.phases)
     }
 
-    private fun pauseChronometer()
-    {
-        if (isRunning)
-        {
-            chronometer.stop()
-            pauseoffset = SystemClock.elapsedRealtime() - chronometer.base
-            isRunning = false
-        }
-    }
-
-    private fun resetChronometer()
-    {
-        chronometer.stop()
-        chronometer.base = SystemClock.elapsedRealtime()
-        pauseoffset = 0
-        isRunning = false
-
-    }
 }
