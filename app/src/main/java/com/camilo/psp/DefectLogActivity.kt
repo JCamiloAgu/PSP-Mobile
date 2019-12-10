@@ -1,5 +1,6 @@
 package com.camilo.psp
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
@@ -33,8 +34,6 @@ class DefectLogActivity : AppCompatActivity() {
 
         setUpSpinners()
         setUpEvents()
-
-
     }
 
     private fun setUpEvents()
@@ -45,10 +44,18 @@ class DefectLogActivity : AppCompatActivity() {
 
         imageButtonReset.setOnClickListener {
             defectLogViewModel.resetChronometer(chronometer)
+            binding.circle.progress = 0
         }
 
         imageButtonStop.setOnClickListener {
             defectLogViewModel.pauseChronometer(chronometer)
+        }
+
+        chronometer.setOnChronometerTickListener {
+            if (it.text[3].toString().toInt() == 5 && it.text[4].toString().toInt() == 9)
+                binding.circle.progress = 0
+            else
+                binding.circle.progress += 1
         }
     }
 
