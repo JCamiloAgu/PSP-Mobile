@@ -7,10 +7,11 @@ import androidx.room.RoomDatabase
 import com.camilo.psp.data.dao.DefectLogDao
 import com.camilo.psp.data.dao.ProjectDao
 import com.camilo.psp.data.dao.TimeLogDao
+import com.camilo.psp.data.entity.DefectLogEntity
 import com.camilo.psp.data.entity.ProjectEntity
 import com.camilo.psp.data.entity.TimeLogEntity
 
-@Database(entities = [ProjectEntity::class, TimeLogEntity::class], version = 1)
+@Database(entities = [ProjectEntity::class, TimeLogEntity::class, DefectLogEntity::class], version = 1)
 abstract class ProjectsRoomDatabase : RoomDatabase(){
 
     abstract fun projectDao(): ProjectDao

@@ -9,7 +9,7 @@ import com.camilo.psp.data.entity.DefectLogEntity
 @Dao
 interface DefectLogDao {
     @Query("SELECT * FROM defectLogs WHERE projectId = :projectId")
-    fun getAllDefectLogs(projectId: Int): LiveData<List<DefectLogEntity>>
+    fun getAllDefectLogs(projectId: Int): LiveData<List<DefectLogEntity?>>
 
     @Insert
     fun insertDefectLog(defectLogEntity: DefectLogEntity)

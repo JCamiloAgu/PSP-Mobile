@@ -24,19 +24,19 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     private val defectLogRepository = DefectLogRepository(defectLogDao)
 
     var projectId: Int = 1
-    val allDefectLogs: LiveData<List<DefectLogEntity>> by lazy { defectLogRepository.getAllDefectLogs(projectId) }
+    val allDefectLogs: LiveData<List<DefectLogEntity?>> by lazy { defectLogRepository.getAllDefectLogs(projectId) }
 
     //Manejadores del cronómetro
     private var isRunning: Boolean = false
     private var pauseOffset: Long = 0
 
     //Textos de los inputs del layout
-    val txtDate: MutableLiveData<String> = MutableLiveData()
-    val txtFixTime: MutableLiveData<String> = MutableLiveData()
-    val txtDefectDescription: MutableLiveData<String> = MutableLiveData()
+    val txtDate: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val txtFixTime: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val txtDefectDescription: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     val isEnabledBtnStart: MutableLiveData<Boolean> = MutableLiveData(true)
-
+    val isEnabledBtnReg: MutableLiveData<Boolean> = MutableLiveData(false)
 
     // Acciones relacionadas con el cronómetro
     fun startChronometer(chronometer: Chronometer)
@@ -86,8 +86,8 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
             final.let { txtDate.value = final }
         }
         isEnabledBtnStart.value = false
+        isEnabledBtnReg.value = true
     }
-
 
     fun insertDefectLog(defectLogEntity: DefectLogEntity) = viewModelScope.launch {
         defectLogRepository.insertDefectLog(defectLogEntity)

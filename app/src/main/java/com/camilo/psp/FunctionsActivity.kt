@@ -25,6 +25,7 @@ class FunctionsActivity : AppCompatActivity() {
 
         btnDefectLog.setOnClickListener {
             val intent = Intent(this, DefectLogActivity::class.java)
+            intent.putExtra("ProjectId", projectId)
             startActivity(intent)
         }
     }
