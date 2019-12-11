@@ -61,7 +61,6 @@ class DefectLogActivity : AppCompatActivity() {
 
         binding.btnReg.setOnClickListener {
 
-
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.camilo.psp.data.dao.DefectLogDao
 import com.camilo.psp.data.dao.ProjectDao
 import com.camilo.psp.data.dao.TimeLogDao
 import com.camilo.psp.data.entity.ProjectEntity
@@ -14,6 +15,7 @@ abstract class ProjectsRoomDatabase : RoomDatabase(){
 
     abstract fun projectDao(): ProjectDao
     abstract fun timeLogDao(): TimeLogDao
+    abstract fun defectLogDao(): DefectLogDao
 
     companion object
     {

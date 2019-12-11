@@ -5,7 +5,13 @@ import android.os.Build
 import android.os.SystemClock
 import android.widget.Chronometer
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.camilo.psp.data.ProjectsRoomDatabase
+import com.camilo.psp.data.entity.DefectLogEntity
+import com.camilo.psp.data.repository.DefectLogRepository
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -14,11 +20,17 @@ import java.util.*
 class DefectLogViewModel(application: Application) : AndroidViewModel(application)
 {
     //TODO = Instanciar el repositorio
+    private val defectLogDao = ProjectsRoomDatabase.getDatabase(application).defectLogDao()
+    private val defectLogRepository = DefectLogRepository(defectLogDao)
 
+    var projectId: Int = 1
+    val allDefectLogs: LiveData<List<DefectLogEntity>> by lazy { defectLogRepository.getAllDefectLogs(projectId) }
 
-    var isRunning: Boolean = false
-    private var pauseoffset: Long = 0
+    //Manejadores del cronómetro
+    private var isRunning: Boolean = false
+    private var pauseOffset: Long = 0
 
+    //Textos de los inputs del layout
     val txtDate: MutableLiveData<String> = MutableLiveData()
     val txtFixTime: MutableLiveData<String> = MutableLiveData()
     val txtDefectDescription: MutableLiveData<String> = MutableLiveData()
@@ -31,7 +43,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     {
         if (!isRunning)
         {
-            chronometer.base = SystemClock.elapsedRealtime() - pauseoffset
+            chronometer.base = SystemClock.elapsedRealtime() - pauseOffset
             chronometer.start()
             isRunning = true
         }
@@ -42,7 +54,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
         if (isRunning)
         {
             chronometer.stop()
-            pauseoffset = SystemClock.elapsedRealtime() - chronometer.base
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
             isRunning = false
         }
     }
@@ -51,7 +63,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     {
         chronometer.stop()
         chronometer.base = SystemClock.elapsedRealtime()
-        pauseoffset = 0
+        pauseOffset = 0
         isRunning = false
 
     }
@@ -74,6 +86,11 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
             final.let { txtDate.value = final }
         }
         isEnabledBtnStart.value = false
+    }
+
+
+    fun insertDefectLog(defectLogEntity: DefectLogEntity) = viewModelScope.launch {
+        defectLogRepository.insertDefectLog(defectLogEntity)
     }
 
 }
