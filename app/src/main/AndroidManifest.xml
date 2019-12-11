@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DefectLogActivity"></activity>
+        <activity android:name=".DefectLogActivity" android:configChanges="screenSize|orientation"></activity>
         <activity android:name=".TimeLogActivity" />
         <activity android:name=".FunctionsActivity" />
         <activity android:name=".MainActivity">

@@ -1,10 +1,15 @@
 package com.camilo.psp.viewmodels
 
 import android.app.Application
+import android.os.Build
 import android.os.SystemClock
 import android.widget.Chronometer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DefectLogViewModel(application: Application) : AndroidViewModel(application)
 {
@@ -13,9 +18,6 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
 
     var isRunning: Boolean = false
     private var pauseoffset: Long = 0
-    var base: Long = SystemClock.elapsedRealtime()
-    var chronometerText: CharSequence = "00:00"
-
 
     val txtDate: MutableLiveData<String> = MutableLiveData()
     val txtFixTime: MutableLiveData<String> = MutableLiveData()
@@ -30,7 +32,6 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
         if (!isRunning)
         {
             chronometer.base = SystemClock.elapsedRealtime() - pauseoffset
-            base = chronometer.base
             chronometer.start()
             isRunning = true
         }
@@ -41,7 +42,7 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
         if (isRunning)
         {
             chronometer.stop()
-            pauseoffset = SystemClock.elapsedRealtime() - base
+            pauseoffset = SystemClock.elapsedRealtime() - chronometer.base
             isRunning = false
         }
     }
@@ -50,10 +51,29 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     {
         chronometer.stop()
         chronometer.base = SystemClock.elapsedRealtime()
-        base = chronometer.base
         pauseoffset = 0
         isRunning = false
 
+    }
+
+    //TODO == Esta funcion se repite mucho, la puedo adecuar a *Common*
+
+    fun setDate()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val localDateTime = LocalDateTime.now()
+            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm:ss")
+            val final = formatter.format(localDateTime)
+            final.let { txtDate.value = final }
+        }
+        else
+        {
+            val pattern = "d MMM yyyy HH:mm:ss"
+            val simpleDateFormat = SimpleDateFormat(pattern)
+            val final = simpleDateFormat.format(Date())
+            final.let { txtDate.value = final }
+        }
+        isEnabledBtnStart.value = false
     }
 
 }

@@ -3,6 +3,7 @@ package com.camilo.psp
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.widget.Chronometer
 import android.widget.Toast
@@ -29,14 +30,7 @@ class DefectLogActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         chronometer = binding.myChronometer
-        chronometer.base = defectLogViewModel.base
-
-        if (defectLogViewModel.isRunning) {
-            defectLogViewModel.isRunning = false
-            defectLogViewModel.startChronometer(chronometer)
-        }
-        else
-            chronometer.text = defectLogViewModel.chronometerText
+        chronometer.base = SystemClock.elapsedRealtime()
 
         setUpSpinners()
         setUpEvents()
@@ -58,12 +52,16 @@ class DefectLogActivity : AppCompatActivity() {
         }
 
         chronometer.setOnChronometerTickListener {
-            Log.d("CHRONOMETER", it.text.toString())
-            defectLogViewModel.chronometerText = it.text
-            if (it.text[3].toString().toInt() == 5 && it.text[4].toString().toInt() == 9)
-                binding.circle.progress = 0
-            else
-                binding.circle.progress += 1
+            when {
+                chronometer.text == "00:00" -> binding.circle.progress += 0
+                binding.circle.progress < 59 -> binding.circle.progress += 1
+                else -> binding.circle.progress = 0
+            }
+        }
+
+        binding.btnReg.setOnClickListener {
+
+
         }
     }
 
