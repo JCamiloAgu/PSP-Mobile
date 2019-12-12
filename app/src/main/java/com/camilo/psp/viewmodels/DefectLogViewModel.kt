@@ -38,6 +38,8 @@ class DefectLogViewModel(application: Application) : AndroidViewModel(applicatio
     val isEnabledBtnStart: MutableLiveData<Boolean> = MutableLiveData(true)
     val isEnabledBtnReg: MutableLiveData<Boolean> = MutableLiveData(false)
 
+    val progressTime: MutableLiveData<Int> = MutableLiveData(0)
+
     // Acciones relacionadas con el cronómetro
     fun startChronometer(chronometer: Chronometer)
     {

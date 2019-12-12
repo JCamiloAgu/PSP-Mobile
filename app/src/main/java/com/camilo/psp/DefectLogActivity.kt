@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import android.widget.Chronometer
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -43,6 +42,12 @@ class DefectLogActivity : AppCompatActivity() {
         setUpObservers()
     }
 
+    private fun setUpObservers() {
+        defectLogViewModel.allDefectLogs.observe(this, Observer {
+            Log.d("ALL DEFECTS", it.toString())
+        })
+    }
+
     private fun setUpEvents()
     {
         imageButtonStart.setOnClickListener{
@@ -51,20 +56,20 @@ class DefectLogActivity : AppCompatActivity() {
 
         imageButtonReset.setOnClickListener {
             defectLogViewModel.resetChronometer(chronometer)
-            binding.circle.progress = 0
+            defectLogViewModel.progressTime.value = 0
+            defectLogViewModel.txtFixTime.value = ""
         }
 
         imageButtonStop.setOnClickListener {
             defectLogViewModel.pauseChronometer(chronometer)
-            // TODO = Debo preguntar cual es el cálculo que hay que hacer.
             defectLogViewModel.txtFixTime.value = chronometer.text.toString()
         }
 
         chronometer.setOnChronometerTickListener {
             when {
-                chronometer.text == "00:00" -> binding.circle.progress += 0
-                binding.circle.progress < 59 -> binding.circle.progress += 1
-                else -> binding.circle.progress = 0
+                chronometer.text == "00:00" -> defectLogViewModel.progressTime.value = defectLogViewModel.progressTime.value!!
+                defectLogViewModel.progressTime.value!!  < 59 -> defectLogViewModel.progressTime.value = chronometer.text.subSequence(3..4).toString().toInt()
+                else ->defectLogViewModel.progressTime.value = 0
             }
         }
 
@@ -117,10 +122,6 @@ class DefectLogActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setUpObservers() {
-        defectLogViewModel.allDefectLogs.observe(this, Observer {
-            Log.d("ALL DEFECTS", it.toString())
-        })
-    }
+
 
 }

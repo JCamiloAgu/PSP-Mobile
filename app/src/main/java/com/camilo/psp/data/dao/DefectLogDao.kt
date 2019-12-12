@@ -12,5 +12,5 @@ interface DefectLogDao {
     fun getAllDefectLogs(projectId: Int): LiveData<List<DefectLogEntity?>>
 
     @Insert
-    fun insertDefectLog(defectLogEntity: DefectLogEntity)
+    suspend fun insertDefectLog(defectLogEntity: DefectLogEntity)
 }
