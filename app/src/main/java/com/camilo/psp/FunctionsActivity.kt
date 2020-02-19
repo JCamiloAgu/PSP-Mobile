@@ -11,6 +11,8 @@ class FunctionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_functions)
 
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val btnTimeLog = btn_time_log
         val btnDefectLog = btn_defect_log
 
@@ -25,6 +27,12 @@ class FunctionsActivity : AppCompatActivity() {
 
         btnDefectLog.setOnClickListener {
             val intent = Intent(this, DefectLogActivity::class.java)
+            intent.putExtra("ProjectId", projectId)
+            startActivity(intent)
+        }
+
+        btn_project_plan_summary.setOnClickListener {
+            val intent = Intent(this, ProjectPlanSummaryActivity::class.java)
             intent.putExtra("ProjectId", projectId)
             startActivity(intent)
         }

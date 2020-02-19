@@ -65,6 +65,18 @@
     <string name="new_project_dialog_positive_btn">Agregar</string>
     <string name="new_project_dialog_negative_btn">Cancelar</string>
     <string name="new_project_dialog_positive_btn_error">El nombre del proyecto no puede estar vacío.</string>
+    <string name="subtitle_acumulate">Acumulado</string>
+    <string name="title_activity_project_plan_summary">ProjectPlanSummaryActivity</string>
+
+    <!-- Bottom navigation -->
+
+    <string name="title_time_in_phase">Time in phase</string>
+    <string name="title_defects_injected">Defects injected</string>
+    <string name="title_defects_removed">Defects removed</string>
+    <string name="title_activity_ppp">PPPActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 
 </resources>

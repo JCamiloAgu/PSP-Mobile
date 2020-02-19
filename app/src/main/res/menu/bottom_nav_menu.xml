@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_time_in_phase"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_time_in_phase" />
+
+    <item
+        android:id="@+id/navigation_defects_injected"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_defects_injected" />
+
+    <item
+        android:id="@+id/navigation_defects_removed"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/title_defects_removed" />
+
+</menu>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@+id/navigation_time_in_phase">
+
+
+    <fragment
+        android:id="@+id/navigation_time_in_phase"
+        android:name="com.camilo.psp.ui.home.TimeInPhaseFragment"
+        android:label="@string/title_time_in_phase"
+        tools:layout="@layout/fragment_time_in_phase" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_defects_injected"
+        android:name="com.camilo.psp.ui.dashboard.DefectsInPhaseFragment"
+        android:label="@string/title_defects_injected"
+        tools:layout="@layout/fragment_defects_in_phase" >
+        <argument android:name="isDefectsInjected"
+            app:argType="boolean"
+            android:defaultValue="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_defects_removed"
+        android:name="com.camilo.psp.ui.dashboard.DefectsInPhaseFragment"
+        android:label="@string/title_defects_removed"
+        tools:layout="@layout/fragment_defects_in_phase" >
+        <argument android:name="isDefectsInjected"
+            app:argType="boolean"
+            android:defaultValue="false"/>
+    </fragment>
+</navigation>

@@ -9,9 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DefectLogActivity" android:configChanges="screenSize|orientation"></activity>
-        <activity android:name=".TimeLogActivity" />
-        <activity android:name=".FunctionsActivity" />
+        <activity
+            android:name=".ProjectPlanSummaryActivity"
+            android:label="@string/title_activity_ppp">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.camilo.psp.FunctionsActivity">
+            </meta-data>
+        </activity>
+        <!--        <activity-->
+<!--            android:name=".ProjectPlanSummaryActivity"-->
+<!--            android:label="@string/title_activity_project_plan_summary"-->
+<!--            android:parentActivityName=".FunctionsActivity">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value="com.camilo.psp.FunctionsActivity" />-->
+<!--        </activity>-->
+        <activity
+            android:name=".DefectLogActivity"
+            android:configChanges="screenSize|orientation" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.camilo.psp.FunctionsActivity">
+            </meta-data>
+        </activity>
+        <activity android:name=".TimeLogActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.camilo.psp.FunctionsActivity">
+            </meta-data>
+        </activity>
+        <activity android:name=".FunctionsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.camilo.psp.MainActivity">
+            </meta-data>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
